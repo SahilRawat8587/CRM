@@ -27,32 +27,44 @@ const Login = () => {
                 <h1 className="text-center text-8xl font-bold text-[#47136b]">MARKETING</h1>
                 <h2 className="text-right text-7xl font-bold text-white">EXL</h2>
             </div>
-            <div className="form flex flex-col gap-2 w-full"><form className="w-full max-w-sm bg-white flex flex-col gap-4" action="">
-            <h1 className="text-center text-purple-700 text-2xl font-bold">Login</h1>
+            <div className="form flex flex-col gap-2 w-full h-[90vh] justify-center"><form className="w-full max-w-sm bg-white bg-opacity-40 flex flex-col gap-4 justify-center items-center h-[80%] rounded-xl" action="">
+            <h1 className="text-center text-[#47136b] text-2xl font-bold">Login</h1>
 
-            <div className="flex flex-col gap-2 mt-3">
+            <div className="flex flex-col gap-2 mt-3 w-[90%]">
                 {/* <label htmlFor="email" className="font-semibold"> Email </label> */}
                 <input 
                     type="email" 
                     required
                     placeholder="Enter your email"
-                    className="px-4 py-3 border border-gray-400 bg-gray-300 m-[8px 0] rounded-lg text-[13px] focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    className=" px-4 py-3 border border-gray-600 bg-transparent backdrop-blur text-black m-[8px 0] rounded-lg text-[13px] focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-current"
                     
                 />
             </div>
-            <div className="mt-3 flex flex-col gap-2">
+            <select
+              id="packages"
+              name="packages"
+              className="w-[90%] px-4 text-black py-3 border border-gray-600 m-[8px 0] bg-transparent backdrop-blur rounded-lg text-[13px] focus:outline-none focus:ring-2 focus:ring-purple-500 appearance-none cursor-pointer"
+            >
+              <option value="" disabled selected className="text-[#47136b] bg-purple-500 ">
+                --- Role ---
+              </option>
+              <option value="Admin" className='text-white  bg-[#111]  p-1'>Admin</option>
+              <option value="Manager" className='text-white  bg-[#111]   p-1'>Manager</option>
+              <option value="Employee" className='text-white  bg-[#111]   p-1'>Employee</option>
+            </select>
+            <div className=" flex flex-col gap-2 w-[90%]">
                 {/* <label htmlFor="password" className="font-semibold"> Password </label> */}
                 <input 
                     type="password" 
                     required
                     placeholder="Enter your password"
-                    className="px-4 py-3 border border-gray-400 m-[8px 0] bg-gray-300 rounded-lg text-[13px] focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    className=" px-4 py-3 border border-gray-600 m-[8px 0] bg-transparent backdrop-blur text-black rounded-lg text-[13px] focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-current"
                   
                 />
-                <a className='text-gray-320 text-sm decoration-none  hover:underline self-end' href="#">Forgot Your Password?</a>
+                <a className='text-gray-320 text-xs decoration-none hover:underline self-end' href="#">Forgot Your Password?</a>
             </div>
 
-            <button type="submit" className="w-full py-3 bg-purple-700 text-white font-semibold rounded-lg hover:bg-purple-800 transition duration-300 text-transform uppercase letterspacing-[0.5px] cursor-pointer">
+            <button type="submit" className="w-[80%] py-3 bg-[#47136b] text-white font-semibold rounded-lg hover:bg-purple-800 transition duration-300 text-transform uppercase letterspacing-[0.5px] cursor-pointer">
                 Login
             </button>
 
