@@ -1,10 +1,13 @@
 import Login from "./pages/Login/Login"
+import { Routes, Route } from "react-router-dom"
 
 function App() {
 
   return (
     <>
-      <Login />
+      <Routes>
+        <Route path="/" element={<Login />} />
+      </Routes>
     </>
   )
 }

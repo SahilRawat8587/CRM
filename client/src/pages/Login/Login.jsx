@@ -1,7 +1,24 @@
-import React from 'react'
+import { useState } from 'react'
 import './components/Login.css'
+import { Loader, Lock, Mail, User, Eye, EyeOff } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 const Login = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [role, setRole] = useState('')
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false)
+  const isLoading = false;
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log({ email, password, role })
+  }
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible)
+  }
+
   return (
     <div>
         <div className="fixed w-screen h-screen top-0 left-0 bg-[#A82EFF] overflow-hidden">
@@ -31,41 +48,59 @@ const Login = () => {
             <h1 className="text-center text-[#47136b] text-2xl font-bold">Login</h1>
 
             <div className="flex flex-col gap-2 mt-3 w-[90%]">
-                {/* <label htmlFor="email" className="font-semibold"> Email </label> */}
-                <input 
-                    type="email" 
+              <div className="flex items-center border border-gray-600 bg-transparent backdrop-blur rounded-lg">
+                <Mail className='w-6 h-6 text-[#47136b] ml-3'/>
+                <input
+                    type="email"
                     required
                     placeholder="Enter your email"
-                    className=" px-4 py-3 border border-gray-600 bg-transparent backdrop-blur text-black m-[8px 0] rounded-lg text-[13px] focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-current"
-                    
+                    className="flex-1 px-4 py-3 bg-transparent text-black rounded-lg text-[13px] focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-current"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                 />
-            </div>
-            <select
-              id="packages"
-              name="packages"
-              className="w-[90%] px-4 text-black py-3 border border-gray-600 m-[8px 0] bg-transparent backdrop-blur rounded-lg text-[13px] focus:outline-none focus:ring-2 focus:ring-purple-500 appearance-none cursor-pointer"
-            >
-              <option value="" disabled selected className="text-[#47136b] bg-purple-500 ">
-                --- Role ---
-              </option>
-              <option value="Admin" className='text-white  bg-[#111]  p-1'>Admin</option>
-              <option value="Manager" className='text-white  bg-[#111]   p-1'>Manager</option>
-              <option value="Employee" className='text-white  bg-[#111]   p-1'>Employee</option>
-            </select>
-            <div className=" flex flex-col gap-2 w-[90%]">
-                {/* <label htmlFor="password" className="font-semibold"> Password </label> */}
-                <input 
-                    type="password" 
-                    required
-                    placeholder="Enter your password"
-                    className=" px-4 py-3 border border-gray-600 m-[8px 0] bg-transparent backdrop-blur text-black rounded-lg text-[13px] focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-current"
-                  
-                />
-                <a className='text-gray-320 text-xs decoration-none hover:underline self-end' href="#">Forgot Your Password?</a>
+              </div>
             </div>
 
-            <button type="submit" className="w-[80%] py-3 bg-[#47136b] text-white font-semibold rounded-lg hover:bg-purple-800 transition duration-300 text-transform uppercase letterspacing-[0.5px] cursor-pointer">
-                Login
+            <div className="flex flex-col gap-2 w-[90%]">
+              <div className="flex items-center border border-gray-600 bg-transparent backdrop-blur rounded-lg">
+                <User className='w-6 h-6 text-[#47136b] ml-3'/>
+                <select
+                  id="packages"
+                  name="packages"
+                  className="flex-1 px-4 py-3 bg-transparent text-black rounded-lg text-[13px] focus:outline-none focus:ring-2 focus:ring-purple-500 appearance-none cursor-pointer"
+                  value={role}
+                  onChange={(e) => setRole(e.target.value)}
+                >
+                  <option value="" disabled selected className="text-[#47136b] bg-purple-500 ">
+                    --- Role ---
+                  </option>
+                  <option value="Admin" className='text-white  bg-[#111]  p-1'>Admin</option>
+                  <option value="Manager" className='text-white  bg-[#111]   p-1'>Manager</option>
+                  <option value="Employee" className='text-white  bg-[#111]   p-1'>Employee</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-2 w-[90%]">
+              <div className="flex items-center border border-gray-600 bg-transparent backdrop-blur rounded-lg relative">
+                <Lock className='w-6 h-6 text-[#47136b] ml-3'/>
+                <input 
+                    type={isPasswordVisible ? "text" : "password"} 
+                    required
+                    placeholder="Enter your password"
+                    className="flex-1 px-4 py-3 bg-transparent text-black rounded-lg text-[13px] focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-current"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+                <button type="button" onClick={togglePasswordVisibility} className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                  {isPasswordVisible ? <EyeOff className='w-6 h-6 text-[#47136b]' /> : <Eye className='w-6 h-6 text-[#47136b]' />}
+                </button>
+              </div>
+              <Link to="/forgot-password" className='text-gray-320 text-xs decoration-none hover:underline self-end' href="#">Forgot Password?</Link>
+            </div>
+
+            <button type="submit" disabled={isLoading} className="w-[80%] py-3 bg-[#47136b] text-white font-semibold rounded-lg hover:bg-purple-800 transition duration-300 text-transform uppercase letterspacing-[0.5px] cursor-pointer" onClick={handleSubmit}>
+              { isLoading ? <Loader className='w-6 h-6 animate-spin mx-auto' /> : "Login" }
             </button>
 
             </form>
