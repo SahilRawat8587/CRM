@@ -1,3 +1,5 @@
+import './Login.css'
+
 const Animation = () => {
   return (
     <div>
