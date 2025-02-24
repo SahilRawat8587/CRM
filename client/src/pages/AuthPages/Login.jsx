@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './components/Login.css'
 import { Loader, Lock, Mail, User, Eye, EyeOff } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { BASE_URL } from '../../utils/constant.js'
 import { useDispatch } from 'react-redux'
@@ -9,12 +9,13 @@ import { addUser } from '../../redux/slices/userSlice.js'
 import Animation from './components/Animation'
 
 const Login = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('ankitcode2511@gmail.com')
+  const [password, setPassword] = useState('Ankit@123')
   const [isPasswordVisible, setIsPasswordVisible] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
   const dipatach = useDispatch();
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -29,9 +30,10 @@ const Login = () => {
       dipatach(addUser({
         user: response.data.user
       }))
+      navigate('/dashboard')
       // Handle successful login here
     } catch (error) {
-      setError(error.response.data.message)
+      setError(error.response.data.message || 'An error occurred while logging in')
     } finally {
       setIsLoading(false)
     }

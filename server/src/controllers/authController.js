@@ -18,10 +18,16 @@ const register = async (req, res) => {
         });
 
         await user.save();
-        res.status(201).json({ message: `User registered successfully with username ${username}` });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
+        res.status(201).json({
+            success: true,
+            message: 'User created successfully',
+            user: user
+        });
+        } catch (error) {
+            res.status(500).json({
+                message: `Error: ${error.message}`
+            });
+        }
 }
 
 const login = async (req, res) => {
@@ -39,16 +45,25 @@ const login = async (req, res) => {
 
         const token = jwt.sign({ _id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
         res.cookie('token', token);
-        res.status(200).json({ message: 'Login successful', user });
-
+        await user.save();
+        res.status(200).json({ 
+            success: true,
+            message: 'Logged in successfully',
+            user: user
+        });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({
+            message: `Error: ${error.message}`
+        });
     }
 }
 
 const logout = (req, res) => {
     res.clearCookie('token');
-    res.status(200).json({ message: 'Logout successful' });
+    res.status(200).json({
+        success: true,
+        message: 'Logged out successfully'
+    });
 }
 
 const forgotPassword = async (req, res) => {
@@ -72,10 +87,14 @@ const forgotPassword = async (req, res) => {
         // Send the email with the reset token
         await sendPasswordResetEmail(user.email, `${process.env.CLIENT_URL}/reset-password/${resetToken}`);
 
-        res.status(200).json({ message: 'Password reset email sent' });
-
+        res.status(200).json({
+            success: true,
+            message: 'Password reset email sent successfully'
+        }); 
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({
+            message: `Error: ${error.message}`
+        }); 
     }
 }
 
@@ -99,10 +118,15 @@ const resetPassword = async (req, res) => {
 
         await sendResetSuccessEmail(user.email);
 
-        res.status(200).json({ message: 'Password reset successful' });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
+        res.status(200).json({
+            success: true,
+            message: 'Password reset successfully'
+        });
+        } catch (error) {
+            res.status(500).json({
+                message: `Error: ${error.message}`
+            });    
+        }
 }
 
 module.exports = { register, login, logout, forgotPassword, resetPassword };
