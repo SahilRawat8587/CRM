@@ -129,4 +129,19 @@ const resetPassword = async (req, res) => {
         }
 }
 
-module.exports = { register, login, logout, forgotPassword, resetPassword };
+const checkAuth = async (req, res) => {
+    try {
+        const user = req.user;
+        res.status(200).json({
+            success: true,
+            message: 'User authenticated successfully',
+            user: user
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: `Error: ${error.message}`
+        });
+    }
+}
+
+module.exports = { register, login, logout, forgotPassword, resetPassword, checkAuth };
