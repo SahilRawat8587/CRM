@@ -7,6 +7,7 @@ const userRouter = require('./routes/userRoutes');
 const cors = require('cors');
 const fileRouter = require('./routes/fileRoutes');
 const profileRouter = require('./routes/profileRoutes');
+const teamRouter = require('./routes/teamRoutes');
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use('/auth', authRouter);
 app.use('/user', userRouter);
 app.use('/file', fileRouter);
 app.use('/profile', profileRouter);
+app.use('/team', teamRouter);
 
 // Server
 const PORT = process.env.PORT || 5000;

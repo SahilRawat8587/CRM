@@ -1,8 +1,9 @@
-const express = require('express')
+const express = require('express');
+const updateProfile = require('../controllers/profileController');
 const verifyToken = require('../middlewares/authMiddleware');
-const { profileView } = require('../controllers/profileController');
-const profileRouter = express.Router()
+const authorizeRoles = require('../middlewares/roleMiddleware');
+const profileRouter = express.Router();
 
-profileRouter.get('/view', verifyToken, profileView);
+profileRouter.patch('/update-profile', verifyToken, authorizeRoles("Admin", "Manager", "Employee"), updateProfile);
 
 module.exports = profileRouter;
