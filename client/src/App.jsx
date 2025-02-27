@@ -1,5 +1,4 @@
 import { Navigate, Route, Routes } from "react-router-dom"
-import Login from "./pages/Authpages/Login"
 import ForgotPassword from "./pages/Authpages/ForgotPassword"
 import ResetPassword from "./pages/Authpages/ResetPassword"
 import { Toaster } from "react-hot-toast"
@@ -9,6 +8,7 @@ import { checkAuth } from "./redux/slices/authSlice"
 import LoadingSpinner from "./components/LoadingSpinner"
 import Dashboard from "./pages/Dashboard/Dashboard"
 import Navbar from "./components/Navbar"
+import Login from "./pages/AuthPages/Login"
 
 // Redirect unauthenticated user to login page
 const ProtectedRoute = ({ children }) => {
