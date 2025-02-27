@@ -15,9 +15,13 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: 'https://crm-78zr.onrender.com',
+    origin: ['https://crm-78zr.onrender.com', 'http://localhost:5173'],
     credentials: true
 }))
+
+app.get('/api', (req, res) => {
+    res.send('API is running');
+});
 
 // Routes
 app.use('/auth', authRouter);
