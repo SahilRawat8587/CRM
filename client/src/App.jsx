@@ -8,6 +8,7 @@ import { useEffect } from "react"
 import { checkAuth } from "./redux/slices/authSlice"
 import LoadingSpinner from "./components/LoadingSpinner"
 import Dashboard from "./pages/Dashboard/Dashboard"
+import Navbar from "./components/Navbar"
 
 // Redirect unauthenticated user to login page
 const ProtectedRoute = ({ children }) => {
@@ -44,6 +45,7 @@ function App() {
 
   return (
     <>
+      <Navbar />
       <Routes>
         <Route 
           path="/dashboard" 

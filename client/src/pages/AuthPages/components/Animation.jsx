@@ -7,7 +7,7 @@ const Animation = () => {
           {[...Array(30)].map((_, index) => (
             <li
               key={index}
-              className="absolute list-none bg-white/20 rounded-xl animate-floating"
+              className="absolute list-none bg-[#F66435]/25 rounded-xl animate-floating"
               style={{
                 left: `${Math.random() * 90}%`,
                 width: `${Math.random() * 100 + 50}px`,
