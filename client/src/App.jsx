@@ -9,6 +9,7 @@ import Login from "./pages/AuthPages/Login"
 import ForgotPassword from "./pages/AuthPages/ForgotPassword"
 import ResetPassword from "./pages/AuthPages/ResetPassword"
 import Dashboard from "./pages/Dashboard/Dashboard"
+import Sidebar from "./components/SideBar"
 
 // Redirect unauthenticated user to login page
 const ProtectedRoute = ({ children }) => {
@@ -45,13 +46,18 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes>
         <Route 
           path="/dashboard" 
           element={
             <ProtectedRoute>
-              <Dashboard />
+              <Navbar />
+              <div className="flex">
+              <Sidebar />
+              <div className="flex-1 p-4">
+                 <Dashboard />
+               </div></div>
             </ProtectedRoute>
           } 
         />

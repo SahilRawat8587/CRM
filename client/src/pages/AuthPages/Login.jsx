@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "@/redux/slices/authSlice";
 
 const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("ankitcode2511@gmail.com");
+    const [password, setPassword] = useState("Ankit@1234");
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const { isLoading, error } = useSelector((store) => store.auth);
     const dispatch = useDispatch();
