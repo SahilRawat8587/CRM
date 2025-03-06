@@ -11,6 +11,7 @@ import ResetPassword from "./pages/AuthPages/ResetPassword"
 import Dashboard from "./pages/Dashboard/Dashboard"
 import Sidebar from "./components/SideBar"
 import FileRepository from "./pages/FileRepository/FileRepository"
+import Team from "./pages/Team/Team"
 
 // Redirect unauthenticated user to login page
 const ProtectedRoute = ({ children }) => {
@@ -60,7 +61,7 @@ function App() {
                 <Routes>
                   <Route path="dashboard" element={<Dashboard />} />
                   <Route path="files" element={<FileRepository />} />
-                  <Route path="team" element={<h1>Team</h1>} />
+                  <Route path="team" element={<Team />} />
                  </Routes>
                </div></div>
             </ProtectedRoute>
