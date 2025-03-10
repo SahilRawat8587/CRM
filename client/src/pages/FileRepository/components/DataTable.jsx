@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowUpDown, FileUp, Trash2 } from "lucide-react";
+import { FileUp, Trash2 } from "lucide-react";
 import React, { useState } from "react";
 
 export function DataTable({ columns, data }) {

@@ -1,4 +1,4 @@
-export const API_URL = "https://crm-xnr7.onrender.com";
+export const API_URL = "http://localhost:5000";
 export const ROLES = {
     ADMIN : "Admin",
     MANAGER : "Manager",
