@@ -3,7 +3,7 @@ const fileRouter = express.Router();
 const { uploadFile, removeFile, getFiles } = require('../controllers/fileController');
 const verifyToken = require('../middlewares/authMiddleware');
 const authorizeRoles = require('../middlewares/roleMiddleware');
-const upload = require('../config/mutlerConfig')
+const upload = require('../config/mutlerConfig');
 
 // Upload file to Cloudinary
 fileRouter.post('/upload', verifyToken, authorizeRoles("Admin", "Manager", "Employee"), upload.single('file'), uploadFile);
