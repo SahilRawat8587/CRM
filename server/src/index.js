@@ -1,5 +1,5 @@
 const express = require('express');
-const dotenv = require('dotenv').config();
+require('dotenv').config();
 const dbConnection = require('./config/dbConnection');
 const cookieParser = require('cookie-parser');
 const authRouter = require('./routes/authRoutes');
@@ -15,7 +15,11 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
+<<<<<<< HEAD
     origin: ['https://crm-78zr.onrender.com', 'http://localhost:5173', 'http://localhost:5174'],
+=======
+    origin: ['https://crm-78zr.onrender.com', 'http://localhost:5173', '*'],
+>>>>>>> 197af1c5660d4a2ed05858ea63fbad674b9432ad
     credentials: true
 }))
 
